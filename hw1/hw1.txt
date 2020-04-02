@@ -1,0 +1,14 @@
+The first five functions are pretty trivial. Basically all I need to do is to think about how I can revursively implment it and then express it in terms of Ocaml functions. I had experience in Lisp before so this part is not too bad for me.  Basically all I needed to do is to do pattern matching with the input, and then write both the base case and the resursive case,
+
+For the last function , I followed the algorithm in the Python code hint given by the TAs. I find it really helpful since it would otherwise take me a massive longer time to think about how to implement this. Basically the idea is to make use of the computed_fixed_point function written earlier and pass in a funciton called get_reachable_symbols as the function parameter so that it keeps calling the get_reachable_symbols function until the output doesn't change. What get_reachable_symbols does is it takes in a list of rules and a list of reachable symbols, and it checks if the left hand side of the rules is in the reachable symbole list. If it is in there, we include the symbols in the right hand side in the reacheble symbol list as well. If not, we do nothing. Here we are basically performing a search. Of course this part is also implemented recursively: check the first element in the list first and recursively call the function. 
+
+After that, we get a list of (final) reachable symbols and we can filter the rules based on if the left hand side is in it. The result are the rules we want. 
+
+Some problems I met:
+
+I spent a lot of time trying to figure out type related problems. Thank you TAs for answering my questions on Piazza and helping me out in office hours. I especially find the TA's post pinned on Piazza top most helpful. 
+
+I had some problems when translating the python hint codes to Ocaml since they are very different languages and have entirely diffrent data structures. I find writing small helpt functions really helpful.
+
+Specificly, I also had this problem of when I called get_reachable_symbols it keeps deleting elements in the first parameter list when recursively calls itself. It is intended to do that for implementaiton reason(resursion) but that's not good for our purpose of using fixed_point to call its output again since it eventually deletes all the rules. I had to make a helper function outisde of the get_reachable_symbols and keep the original list in this funciton and call the actual function inside this helper funciton. And after that I will pass the helper function as the parameter to the findfixedpoint funciton. This solves the problem.
+

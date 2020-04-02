@@ -1,0 +1,24 @@
+I used the hint codes provideed by the TAs.
+
+My plain_tower takes 5 minutes when I call plain_tower(5,T,C)
+
+I put two phrases in the speedup section to avoid the divded by zero problem.
+
+| ?- speedup(S).
+
+S = 1470.0 ?
+
+| ?- ambiguous(1,C,T1,T2).
+
+no
+| ?- ambiguous(2,C,T1,T2).
+
+no
+| ?- ambiguous(3,C,T1,T2).
+
+(1 ms) no
+| ?- ambiguous(4,C,T1,T2).
+
+C = counts([4,2,2,1],[1,2,2,4],[4,2,2,1],[1,2,2,4])
+T1 = [[1,2,3,4],[2,1,4,3],[3,4,1,2],[4,3,2,1]]
+T2 = [[1,2,3,4],[2,4,1,3],[3,1,4,2],[4,3,2,1]] ?

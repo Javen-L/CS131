@@ -1,0 +1,6 @@
+(define hm1 (hash-set (hash) 'lambda 'lambda!if))
+
+(define hm2 (hash-set (hash) 'if 'lambda!if))
+
+(lhelper3 '(+ lambda if (f lambda)) hm1)
+

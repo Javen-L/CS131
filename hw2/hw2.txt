@@ -1,0 +1,11 @@
+First of all, I want to say that my algorithm for make_parser roughly follows the hint code provided by the TAs. Again, I find the hint code extremly helpful.
+
+I wrote make_parser on top of make_matcher, although I didn't explicitely use the function make_matcher inside my function make_parser. My make_matcher function uses two mutually recursive functions topsearch and botomsearch. Topsearch takes cares of picking which specific rhs and botomsearch takes care of testing every element in the rhs. 
+
+In implementing my make_parser function, like the hint code implies, I first made a make_rhs function, which returns the rhs in order when we traverse the fragments. Here is when the make_matcher comes in handy. The make_rhs function is totally based on make_matcher: it also uses a pair of mutually recursive function: rhstopsearch and rhsbotomsearch, which are very much like topsearch and botomsearch,but this time instead of returning the ultimate result of the acceptor they return list of rhs recursively. Of course, we also need to set the acceptor as accepting only empty. 
+
+After getting the rhs list, we need to be able to build the tree based on it. First I made a rhs2children function that shallowly makes a two level tree based on single rhs. After that I made a pair of recursive funtions constructing_the_tree and helper which actually builds the tree up. Constructing_the_tree builds a shallow two level tree, and then helper is called on the branches to explore deeper. 
+
+As to why I developed make_parser on top of make_matcher this way is that I followed the hint code and it's very intuitively obvious to build rhstopsearch and rhsbotomsearch on top of topsearch and botomsearch.
+
+In term of weakness, if the frag is wrong (say there is a terminate that has never been defined), instead of returning None my make_parser will get into infinite recursion and eventually have a overflow stack. 
